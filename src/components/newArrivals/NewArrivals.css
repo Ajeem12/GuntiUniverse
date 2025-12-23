@@ -1,0 +1,33 @@
+/* Swiper nav buttons */
+.new-arrivals-swiper .swiper-button-prev,
+.new-arrivals-swiper .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.new-arrivals-swiper .swiper-button-prev:hover,
+.new-arrivals-swiper .swiper-button-next:hover {
+  background: #f3f4f6;
+  transform: scale(1.1);
+}
+
+.new-arrivals-swiper .swiper-button-prev::after,
+.new-arrivals-swiper .swiper-button-next::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.new-arrivals-swiper {
+  padding: 16px 0;
+}
+
+
+
