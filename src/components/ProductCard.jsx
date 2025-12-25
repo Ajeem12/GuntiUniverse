@@ -77,9 +77,9 @@ const ProductCard = ({ item }) => {
       )}
 
       {/* Wishlist Button */}
-      <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors z-10">
+      {/* <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors z-10">
         <FaHeart className="text-gray-600 hover:text-red-500" size={14} />
-      </button>
+      </button> */}
 
       {/* Product Image */}
       <Link to={`/product/${item.slug}/${encodedId}`} className="block flex-1">

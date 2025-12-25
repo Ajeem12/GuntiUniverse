@@ -1782,12 +1782,20 @@ const Order = () => {
                               </p>
                             </div>
                           </div>
-                          {selectedIndex === index && (
-                            <span className="flex items-center text-xs bg-[#EAA11E] text-white px-2 py-1 rounded-full">
-                              <Check fontSize="small" className="mr-1" />{" "}
-                              Selected
-                            </span>
-                          )}
+                          <div className="flex items-center gap-2">
+                            {selectedIndex === index && (
+                              <span className="flex items-center text-xs bg-[#EAA11E] text-white px-[3px] py-1 rounded-full">
+                                <Check fontSize="inherit" />
+                                Selected
+                              </span>
+                            )}
+
+                            {addressHasEdit && (
+                              <span className="flex items-center text-xs  text-green-700 font-semibold">
+                                Free Delivery
+                              </span>
+                            )}
+                          </div>
                         </div>
 
                         <div className="ml-10 sm:ml-12 mt-2 sm:mt-3 space-y-1 text-xs sm:text-sm text-gray-600">
@@ -2019,14 +2027,17 @@ const Order = () => {
 
               {/* Total Section */}
               <div className="p-4 sm:p-6">
-                <div className="flex justify-between mb-3 sm:mb-4">
-                  <span className="font-medium text-gray-700 text-sm sm:text-base">
-                    Discount
-                  </span>
-                  <span className="font-medium text-green-600 text-sm sm:text-base">
-                    -₹{discount}
-                  </span>
-                </div>
+                {discount > 0 && (
+                  <div className="flex justify-between mb-3 sm:mb-4">
+                    <span className="font-medium text-gray-700 text-sm sm:text-base">
+                      Discount
+                    </span>
+                    <span className="font-medium text-green-600 text-sm sm:text-base">
+                      -₹{discount}
+                    </span>
+                  </div>
+                )}
+
                 <div className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 space-y-1">
                   {/* Line 1: Total */}
                   <div className="flex justify-between">
@@ -2301,38 +2312,6 @@ const Order = () => {
                   <option value="Work">Work</option>
                   <option value="Other">Other</option>
                 </select>
-              </div>
-
-              <div className="md:col-span-2">
-                <button
-                  type="button"
-                  onClick={getLocation}
-                  disabled={gettingLocation}
-                  className="flex items-center justify-center gap-2 px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full text-xs sm:text-sm"
-                >
-                  {gettingLocation ? (
-                    <>
-                      <span className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                      Locating...
-                    </>
-                  ) : (
-                    <>
-                      <LocationOn fontSize="small" />
-                      Use Current Location
-                    </>
-                  )}
-                </button>
-                {newAddress.latitude && newAddress.longitude && (
-                  <p className="mt-2 text-xs sm:text-sm text-green-600 flex items-center">
-                    <Check fontSize="small" className="mr-1" />
-                    Location coordinates captured
-                  </p>
-                )}
-                {locationError && (
-                  <p className="mt-2 text-xs sm:text-sm text-red-600">
-                    {locationError}
-                  </p>
-                )}
               </div>
             </div>
 

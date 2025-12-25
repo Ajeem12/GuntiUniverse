@@ -63,7 +63,7 @@ const SearchResult = () => {
         !loading && (
           <div className="flex flex-col items-center justify-center text-center mt-16">
             <img
-              src="/no-results.svg"
+              src="/img/no-data.gif"
               alt="No results"
               className="w-52 h-52 opacity-70 mb-6"
             />

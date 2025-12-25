@@ -13,9 +13,11 @@ const useSearch = () => {
     setError(null);
 
     try {
-      console.log("Calling API with query:", query);
-      const response = await axios.post(`${API_URL}/product_search`, {search: query });
-      console.log("API Response:", response.data);
+      // console.log("Calling API with query:", query);
+      const response = await axios.post(`${API_URL}/product_search`, {
+        search: query,
+      });
+      // console.log("API Response:", response.data);
       if (response.status === 200) {
         setResults(response.data);
       } else {

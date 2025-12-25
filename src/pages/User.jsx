@@ -53,7 +53,7 @@ const User = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans pb-20 md:pb-0">
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col md:flex-row gap-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 py-8 flex flex-col md:flex-row gap-8">
         {/* Sidebar Navigation */}
         <div className="w-full hidden lg:block md:w-1/4 bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-fit sticky top-36">
           <div className="mb-6 px-2">

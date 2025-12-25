@@ -125,7 +125,7 @@ const OrderDetails = () => {
   const orderInfo = products[0];
 
   return (
-    <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-8  sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Order Header */}
         <div className="mb-8">

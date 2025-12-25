@@ -132,20 +132,20 @@ const FastOrderDetails = () => {
             </h1>
             <span
               className={`px-3 py-1 rounded-full text-xs font-medium ${
-                orderInfo.order_status === 4
+                orderInfo?.order_place_details?.order_status === 4
                   ? "bg-green-100 text-green-800"
-                  : orderInfo.order_status === 3
+                  : orderInfo?.order_place_details?.order_status === 3
                   ? "bg-blue-100 text-blue-800"
-                  : orderInfo.order_status === 2
+                  : orderInfo?.order_place_details?.order_status === 2
                   ? "bg-yellow-100 text-yellow-800"
-                  : orderInfo.order_status === 1
+                  : orderInfo?.order_place_details?.order_status === 1
                   ? "bg-orange-100 text-orange-800"
-                  : orderInfo.order_status === 100
+                  : orderInfo?.order_place_details?.order_status === 100
                   ? "bg-red-100 text-red-800"
                   : "bg-gray-100 text-gray-800"
               }`}
             >
-              {getOrderStatus(orderInfo.order_status)}
+              {getOrderStatus(orderInfo?.order_place_details?.order_status)}
             </span>
           </div>
 
@@ -182,9 +182,13 @@ const FastOrderDetails = () => {
                   <p className="text-sm font-medium text-gray-500">
                     Delivery Charge
                   </p>
-                  <p className="text-sm text-gray-900">
-                    ₹{orderInfo.order_place_details.delivery_charge}
-                  </p>
+                  {orderInfo.order_place_details.delivery_charge === "0" ? (
+                    <p className="text-sm text-green-600">Free Delivery</p>
+                  ) : (
+                    <p className="text-sm text-gray-900">
+                      ₹{orderInfo.order_place_details.delivery_charge}
+                    </p>
+                  )}
                 </div>
 
                 <div>

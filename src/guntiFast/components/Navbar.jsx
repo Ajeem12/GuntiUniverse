@@ -5,6 +5,7 @@ import { useAuthStore } from "../../store/authStore";
 import Login from "../../pages/Login";
 import { useWallet } from "../../hooks/useWallet";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import useFastSearch from "../hooks/gfastSearch";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { HiInformationCircle } from "react-icons/hi";
 import { Search } from "@mui/icons-material";
@@ -15,6 +16,12 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const { mutate: fetchWallet, data: walletData, isLoading } = useWallet();
+  const {
+    mutate: searchProducts,
+    data: searchData,
+    isPending,
+  } = useFastSearch();
+  const [searchQuery, setSearchQuery] = useState("");
   const logout = useAuthStore((state) => state.logout);
   const { user } = useAuthStore();
   const navigate = useNavigate();
@@ -39,18 +46,19 @@ const Navbar = () => {
   const handleWalletClick = () => navigate("/rewards");
 
   const handleSearchSubmit = async (e) => {
-    // e.preventDefault();
-    // if (searchQuery.trim() !== "") {
-    //   // Perform the search
-    //   await searchProducts(searchQuery);
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
 
-    //   // Navigate to the SearchResult page with the query
-    //   navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
-    //   setSearchQuery("");
-    //   setShowSearch(false);
-    // }
-
-    alert("search");
+    // call mutate and navigate with the returned data
+    searchProducts(searchQuery, {
+      onSuccess: (data) => {
+        navigate("/gunti-fast/fast-search", {
+          state: { results: data, query: searchQuery },
+        });
+        setSearchQuery("");
+        setShowSearch(false);
+      },
+    });
   };
 
   return (
@@ -120,6 +128,26 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+          {/* Mobile Search */}
+          {showSearch && (
+            <div className="md:hidden p-2 bg-white  z-50 ">
+              <form onSubmit={handleSearchSubmit} className="flex w-full h-10">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search..."
+                  className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="bg-[#FDBD3C] text-gray-800 px-4 rounded-r-md flex items-center justify-center"
+                >
+                  <Search className="text-white" fontSize="small" />
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -218,27 +246,6 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-
-      {/* Mobile Search */}
-      {showSearch && (
-        <div className="md:hidden p-2 bg-white shadow-md z-50">
-          <form onSubmit={handleSearchSubmit} className="flex w-full h-10">
-            <input
-              type="text"
-              // value={searchQuery}
-              // onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search..."
-              className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="bg-[#FDBD3C] text-gray-800 px-4 rounded-r-md flex items-center justify-center"
-            >
-              <Search className="text-white" fontSize="small" />
-            </button>
-          </form>
-        </div>
-      )}
 
       {/* LOGIN MODAL */}
       {showLoginModal && (

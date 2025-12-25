@@ -166,7 +166,7 @@ export default function MyOrders() {
     );
 
   return (
-    <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-8 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">My Orders</h1>
@@ -183,7 +183,9 @@ export default function MyOrders() {
           ) : (
             martOrders.map((order) => {
               const hashedOrderId = hashids.encode(order.id);
-              const isCancellable = Number(order.order_status) === 0;
+              const isCancellable =
+                Number(order.order_status) === 0 &&
+                Number(order.payment_status) !== 1;
 
               return (
                 <div

@@ -212,7 +212,9 @@ export default function FastMyOrders() {
         <div className="grid grid-cols-1 gap-6">
           {fastOrders.map((order) => {
             const hashedOrderId = hashids.encode(order.id);
-            const isCancellable = Number(order.order_status) === 0;
+            const isCancellable =
+              Number(order.order_status) === 0 &&
+              Number(order.payment_status) !== 1;
 
             return (
               <div
@@ -299,7 +301,7 @@ export default function FastMyOrders() {
                     View order details
                   </Link>
                   <span className="text-lg font-bold text-gray-900">
-                    ₹{order.final_amount}
+                    ₹{order.products_amount}
                   </span>
                 </div>
 

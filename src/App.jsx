@@ -82,6 +82,7 @@ import FastMyOrders from "./guntiFast/pages/FastMyOrder";
 import FastOrderDetails from "./guntiFast/pages/FastOrderDetails";
 import GuntifastSuccess from "./guntiFast/pages/GuntifastSuccess";
 import FastThankYou from "./guntiFast/pages/FastThankYou";
+import FastSearch from "./guntiFast/pages/FastSearch";
 
 // import GuntifastOrder from "./guntiFast/pages/GuntifastOrder";
 
@@ -462,6 +463,7 @@ const router = createBrowserRouter([
       { path: "product-list/:id", element: <FastProductPage /> },
       { path: "fast-cart", element: <FastCart /> },
       { path: "fast-checkout", element: <CheckoutPage /> },
+      { path: "fast-search", element: <FastSearch /> },
       {
         path: "my-orders",
         element: <FastMyOrders />,

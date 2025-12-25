@@ -4,10 +4,10 @@ import { IoIosSunny } from "react-icons/io";
 import { LuMoonStar } from "react-icons/lu";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 const FAST_CATEGORY_IMAGES = {
-  249: "/gfast/morning-removebg-preview.png", // Morning
-  250: "/gfast/lunch-removebg-preview (1).png", // Lunch
-  253: "/gfast/evening-removebg-preview.png", // Evening
-  255: "/gfast/dinner-preview.jpg", // Night
+  249: "/gfast/morning-removebg-preview.png",
+  250: "/gfast/lunch-removebg-preview (1).png",
+  253: "/gfast/evening-removebg-preview.png",
+  255: "/gfast/dinner-preview.jpg",
 };
 
 export default function CategoryBar({
@@ -74,22 +74,6 @@ export default function CategoryBar({
 
   return (
     <div className="sticky top-[65px] z-40">
-      {/* <div className="flex items-center ml-2">
-              {catMeta && (
-          <div className={`p-3 rounded-xl bg-gradient-to-b ${catMeta.bg}`}>
-            <div
-              className={`flex items-center gap-2  font-semibold ${catMeta.text}`}
-            >
-              {catMeta.icon}
-              <div className="max-w-[100px] leading-tight">{catMeta.title}</div>
-            </div>
-
-            <div className={`flex gap-3 mt-2 text-2xl ${catMeta.text}`}>
-              {catMeta.emojis}
-            </div>
-          </div>
-        )}
-      </div> */}
       {/* HEADER + FILTER */}
       <div className="relative">
         {/* FILTER BUTTON */}
@@ -103,7 +87,7 @@ export default function CategoryBar({
         {/* EXISTING HEADER */}
         {catMeta && (
           <div
-            className={`w-full md:w-auto p-3 rounded-xl bg-gradient-to-b ${catMeta.bg}`}
+            className={`w-full md:w-auto p-3 rounded-sm bg-gradient-to-b ${catMeta.bg}`}
           >
             <div
               className={`flex items-center gap-2 font-semibold ${catMeta.text}`}
@@ -181,9 +165,6 @@ export default function CategoryBar({
               <p className="text-[11px] md:text-sm font-medium text-center text-gray-800 truncate w-[65px]">
                 {category.category_name}
               </p>
-              {/* <p className="text-[11px] md:text-sm font-medium text-center text-gray-800 truncate w-[65px]">
-                {category.id}
-              </p> */}
             </div>
           );
         })}

@@ -134,16 +134,19 @@ export default function AddressModal({
             />
           </div>
 
-          {/* Address */}
-          <div>
-            <label className="block text-gray-700 mb-1">Address</label>
-            <input
+          {/* Complete Address */}
+          <div className="md:col-span-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+              Complete Address *
+            </label>
+            <textarea
               name="address"
               value={newAddress.address}
               onChange={onChange}
-              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-400 outline-none"
-              placeholder="Nearby place or building"
-            />
+              rows={3}
+              className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EAA11E] focus:border-transparent text-sm sm:text-base"
+              required
+            ></textarea>
           </div>
 
           {/* Address type */}

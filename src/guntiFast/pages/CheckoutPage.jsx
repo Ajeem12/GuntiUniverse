@@ -487,13 +487,14 @@ export default function CheckoutPage() {
           document.body.appendChild(form);
           form.submit();
         };
-        clearCart?.();
+
         // Call redirect function here
         redirectWithPost(res.payment_window, {
           order_id: res.order_id,
           amount: res.amount,
           token: res.token,
         });
+        clearCart?.();
 
         return;
       }
@@ -667,8 +668,8 @@ export default function CheckoutPage() {
                           </div>
                           <div className="flex items-center gap-2">
                             {selectedIndex === index && (
-                              <span className="flex items-center text-xs bg-[#EAA11E] text-white px-1 py-1 rounded-full">
-                                <Check fontSize="small" className="" />
+                              <span className="flex items-center text-xs bg-[#EAA11E] text-white px-[3px] py-1 rounded-full">
+                                <Check fontSize="inherit" />
                                 Selected
                               </span>
                             )}
@@ -925,14 +926,18 @@ export default function CheckoutPage() {
 
               {/* Total Section */}
               <div className="p-4 sm:p-6">
-                <div className="flex justify-between mb-3 sm:mb-4">
-                  <span className="font-medium text-gray-700 text-sm sm:text-base">
-                    Discount
-                  </span>
-                  <span className="font-medium text-green-600 text-sm sm:text-base">
-                    -₹{discount}
-                  </span>
-                </div>
+                {/* Discount Section */}
+                {discount > 0 && (
+                  <div className="flex justify-between mb-3 sm:mb-4">
+                    <span className="font-medium text-gray-700 text-sm sm:text-base">
+                      Discount
+                    </span>
+                    <span className="font-medium text-green-600 text-sm sm:text-base">
+                      -₹{discount}
+                    </span>
+                  </div>
+                )}
+
                 <div className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 space-y-1">
                   {/* Line 1: Total */}
                   <div className="flex justify-between">
@@ -983,7 +988,7 @@ export default function CheckoutPage() {
 
                 {subtotal >= MIN_ORDER_AMOUNT ? (
                   <div>
-                    {deliveryCharge === 0 && (
+                    {deliveryCharge !== 0 && (
                       <p className="text-sm text-green-600 text-center mb-2">
                         Great news! Orders above ₹{maxAmountForFreeDelivery} get
                         free delivery — save more while you shop!
