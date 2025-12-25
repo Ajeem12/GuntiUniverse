@@ -51,6 +51,7 @@ export default function MyOrders() {
   };
 
   const martOrders = orders?.filter((order) => Number(order.type_mart) === 0);
+  console.log("Mart Orders:", martOrders);
 
   const handleCancelSubmit = () => {
     if (!cancelingOrderId || !selectedReason) return;
@@ -267,11 +268,17 @@ export default function MyOrders() {
                         </div>
                         <div>
                           <h4 className="text-sm font-medium text-gray-500">
-                            Delivery
+                            Delivery Charge
                           </h4>
-                          <p className="mt-1 text-sm text-gray-900">
-                            ₹{order.delivery_charge}
-                          </p>
+                          {order.delivery_charge == "0" ? (
+                            <p className="mt-1 text-sm text-green-600">
+                              Free Delivery
+                            </p>
+                          ) : (
+                            <p className="mt-1 text-sm text-gray-900">
+                              ₹{order.delivery_charge}
+                            </p>
+                          )}
                         </div>
 
                         <div className="mt-2">

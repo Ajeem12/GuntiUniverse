@@ -184,9 +184,13 @@ const OrderDetails = () => {
                   <p className="text-sm font-medium text-gray-500">
                     Delivery Charge
                   </p>
-                  <p className="text-sm text-gray-900">
-                    ₹{orderInfo.order_place_details.delivery_charge}
-                  </p>
+                  {orderInfo.order_place_details.delivery_charge == "0" ? (
+                    <p className="mt-1 text-sm text-green-600">Free Delivery</p>
+                  ) : (
+                    <p className="text-sm text-gray-900">
+                      ₹{orderInfo.order_place_details.delivery_charge}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-500">
@@ -285,6 +289,11 @@ const OrderDetails = () => {
                 );
               })}
             </div>
+          </div>
+          <div className="mt-6 flex justify-end border-t py-4 px-3">
+            <span className="text-lg font-semibold text-gray-900">
+              Total Amount: ₹{orderInfo.order_place_details.products_amount}
+            </span>
           </div>
         </div>
       </div>
