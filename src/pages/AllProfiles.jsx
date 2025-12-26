@@ -29,6 +29,7 @@ import { FaTrash } from "react-icons/fa";
 import ShareButton from "../components/ShareButton";
 import { useGetPackage, useChangePackage } from "../hooks/usePackageChange";
 import { useAddress } from "../hooks/useAddress";
+import CouponCode from "../components/CouponCode";
 const Section = ({ title, icon: Icon, children, defaultExpanded = false }) => {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
@@ -449,6 +450,9 @@ const AllProfiles = () => {
             />
             <div className="mb-4">
               <ShareButton mobile={profile?.mobile} />
+            </div>
+            <div className="gap-2">
+              <CouponCode />
             </div>
           </Section>
 
