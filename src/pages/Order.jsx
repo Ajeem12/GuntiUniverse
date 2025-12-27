@@ -1203,6 +1203,8 @@ const Order = () => {
   const [deliveryOption, setDeliveryOption] = useState(); // 0 or 1
   const [minOrderAmount, setMinOrderAmount] = useState();
   const [maxAmount, setMaxAmount] = useState();
+  const [isOlinePayment, setIsOnlinePayment] = useState();
+
   const [newAddress, setNewAddress] = useState({
     name: "",
     phone: "",
@@ -1219,7 +1221,7 @@ const Order = () => {
   const mutation = useUpdateUserAmount();
   const [pincodeError, setPincodeError] = useState("");
   const [deliveryCharge, setDeliveryCharge] = useState(0);
-  const [paymentMode, setPaymentMode] = useState("online");
+  const [paymentMode, setPaymentMode] = useState("cod");
   const [locationError, setLocationError] = useState(null);
   const [coords, setCoords] = useState({ latitude: null, longitude: null });
   const [gettingLocation, setGettingLocation] = useState(false);
@@ -1551,6 +1553,7 @@ const Order = () => {
           if (deliverySetting) {
             setDeliveryOption(deliverySetting.delivery_option ?? 0);
             setMaxAmount(deliverySetting.max_amount ?? 0);
+            setIsOnlinePayment(deliverySetting?.payment_gatway);
           }
         },
         onError: (err) => {
@@ -1999,29 +2002,30 @@ const Order = () => {
                       Cash on Delivery
                     </span>
                   </label>
-
-                  <label
-                    htmlFor="online"
-                    className={`flex items-center p-3 sm:p-4 border rounded-lg cursor-pointer transition 
+                  {isOlinePayment !== 0 && (
+                    <label
+                      htmlFor="online"
+                      className={`flex items-center p-3 sm:p-4 border rounded-lg cursor-pointer transition 
                       ${
                         paymentMode === "online"
                           ? "border-[#EAA11E] bg-[#FFF7E7]"
                           : "border-gray-300 hover:border-[#EAA11E]"
                       }`}
-                  >
-                    <input
-                      type="radio"
-                      id="online"
-                      name="paymentMode"
-                      value="online"
-                      checked={paymentMode === "online"}
-                      onChange={() => setPaymentMode("online")}
-                      className="form-radio text-[#EAA11E] h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3"
-                    />
-                    <span className="text-gray-700 text-xs sm:text-sm">
-                      Online Payment
-                    </span>
-                  </label>
+                    >
+                      <input
+                        type="radio"
+                        id="online"
+                        name="paymentMode"
+                        value="online"
+                        checked={paymentMode === "online"}
+                        onChange={() => setPaymentMode("online")}
+                        className="form-radio text-[#EAA11E] h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3"
+                      />
+                      <span className="text-gray-700 text-xs sm:text-sm">
+                        Online Payment
+                      </span>
+                    </label>
+                  )}
                 </div>
               </div>
 
